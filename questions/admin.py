@@ -15,7 +15,7 @@ class EditLinkToInlineObject(object):
         url = reverse('admin:%s_%s_change' % (
             instance._meta.app_label,  instance._meta.model_name),  args=[instance.pk] )
         if instance.pk:
-            return mark_safe(u'<a href="{u}">edit</a>'.format(u=url))
+            return mark_safe(u'<a href="{u}?_to_field=id&_popup=1" onclick="return showAddAnotherPopup(this);">edit</a>'.format(u=url))
         else:
             return ''
 
@@ -27,7 +27,7 @@ class QuestionInline(EditLinkToInlineObject, admin.TabularInline):
 
 @admin.register(Exam)
 class ExamAdmin(admin.ModelAdmin):
-    list_display = ('user', 'name', 'created')
+    list_display = ('id', 'user', 'name', 'created')
     search_fields = ('name', 'description')
     
     inlines = [
