@@ -12,7 +12,7 @@ class Exam(models.Model):
     description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey('users.User', on_delete=models.DO_NOTHING)
-    
+
     def __str__(self):
         return self.name
 
@@ -26,7 +26,7 @@ class Question(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.DO_NOTHING)
     option_type = models.CharField(choices=QUESTIONS_CHOICES, max_length=2000)
     created = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return self.question
 
@@ -37,9 +37,12 @@ class QuestionOption(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     option = models.CharField(max_length=1000)
     is_correct = models.BooleanField(default=False)
-    
+
     def __str__(self):
         return f'{self.question} - {self.option}'
+    
+    class Meta:
+        unique_together = ('order', 'question')
 
 
 class Answer(models.Model):

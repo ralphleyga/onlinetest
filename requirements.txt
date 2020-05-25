@@ -2,3 +2,4 @@ Django==3.0.6
 django-debug-toolbar==2.2
 psycopg2==2.8.5
 django-widget-tweaks==1.4.8
+https://github.com/s-block/django-nested-inline/archive/v0.3.5.tar.gz
