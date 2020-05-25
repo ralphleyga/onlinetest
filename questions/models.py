@@ -26,6 +26,7 @@ class Question(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.DO_NOTHING)
     option_type = models.CharField(choices=QUESTIONS_CHOICES, max_length=2000)
     created = models.DateTimeField(auto_now_add=True)
+    seconds = models.IntegerField(default=100)
 
     def __str__(self):
         return self.question
